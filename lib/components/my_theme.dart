@@ -21,5 +21,13 @@ class MyTheme{
         fontSize: 35,
       ),
     ),
+
+    textTheme: const TextTheme(
+      displaySmall: TextStyle(
+        fontFamily: AllTexts.regularFont,
+        fontSize: 11,
+        color: Colors.white,
+      )
+    ),
   );
 }
