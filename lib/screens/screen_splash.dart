@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:marvel_catalog/screens/screen_home_page.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 import '../utilities/image_path.dart';
@@ -20,6 +23,18 @@ class _SplashScreenState extends State<SplashScreen>
   dispose() {
     rotationController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (builder) => const HomePage(),
+        ),
+      );
+    });
+    super.initState();
   }
 
   @override

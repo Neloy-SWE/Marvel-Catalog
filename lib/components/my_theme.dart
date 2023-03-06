@@ -21,13 +21,42 @@ class MyTheme{
         fontSize: 35,
       ),
     ),
-
     textTheme: const TextTheme(
       displaySmall: TextStyle(
         fontFamily: AllTexts.regularFont,
         fontSize: 11,
         color: Colors.white,
-      )
+      ),
+      displayLarge:  TextStyle(
+        fontFamily: AllTexts.boldFont,
+        fontSize: 45,
+        color: Colors.white,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: AllTexts.boldFont,
+        fontSize: 45,
+        color: AllColors.primaryColor,
+      ),
+      bodyMedium: TextStyle(
+        fontFamily: AllTexts.regularFont,
+        fontSize: 30,
+        color: Colors.white,
+      ),
+      bodySmall: TextStyle(
+        fontFamily: AllTexts.regularFont,
+        fontSize: 15,
+        color: Colors.white,
+      ),
+      titleSmall: TextStyle(
+        fontFamily: AllTexts.regularFont,
+        fontSize: 15,
+        color: AllColors.primaryColor,
+      ),
+      titleMedium: TextStyle(
+        fontFamily: AllTexts.boldFont,
+        fontSize: 25,
+        color: AllColors.primaryColor,
+      ),
     ),
   );
 }
