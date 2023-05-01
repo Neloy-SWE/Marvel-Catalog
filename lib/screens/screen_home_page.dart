@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_catalog/components/custom_buttons.dart';
+import 'package:marvel_catalog/screens/screen_character_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
@@ -39,12 +40,16 @@ class _HomePageState extends State<HomePage> {
             textAlign: TextAlign.center,
           ),
           AppSizes.gapH80,
-
-
           AllButtons.btnGeneral(
-            context: context,
-            btnText: AllTexts.explore,
-          ),
+              context: context,
+              btnText: AllTexts.explore,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (builder) => const CharacterList(),
+                  ),
+                );
+              }),
         ],
       ),
     );

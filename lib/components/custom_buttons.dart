@@ -5,12 +5,13 @@ class AllButtons {
   static btnGeneral({
     required BuildContext context,
     required String btnText,
+    required Function() onTap,
   }) {
     return Container(
       height: 80,
       margin: const EdgeInsets.symmetric(horizontal: 50),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: onTap,
         shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(20),
