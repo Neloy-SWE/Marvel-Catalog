@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marvel_catalog/components/my_theme.dart';
 import 'package:marvel_catalog/screens/screen_splash.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 
 void main(){
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
