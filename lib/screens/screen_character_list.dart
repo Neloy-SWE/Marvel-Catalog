@@ -1,57 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:marvel_catalog/network/model/model_character_list.dart';
+import 'package:marvel_catalog/network/request/api/get_api_category_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
-
 import '../components/grid_view_fixed_height.dart';
+import '../network/request/provider/character_list_provider.dart';
 import '../utilities/all_colors.dart';
 import '../utilities/image_path.dart';
 
-class CharacterList extends StatefulWidget {
+class CharacterList extends ConsumerStatefulWidget {
   const CharacterList({Key? key}) : super(key: key);
 
   @override
-  State<CharacterList> createState() => _CharacterListState();
+  ConsumerState<CharacterList> createState() => _CharacterListState();
 }
 
-class _CharacterListState extends State<CharacterList> {
+class _CharacterListState extends ConsumerState<CharacterList> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final data = ref.watch(characterListProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(AllTexts.allCharacters),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.35), BlendMode.dstATop),
-            image: const AssetImage(
-              ImagePath.characterListBack,
+      body: data.when(
+        data: (data) {
+          CharacterListModel list = data;
+          return Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.35), BlendMode.dstATop),
+                image: const AssetImage(
+                  ImagePath.characterListBack,
+                ),
+              ),
             ),
-          ),
-        ),
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const GridViewFixedHeight(
-            crossAxisCount: 2,
-            // childAspectRatio: 0.60,
-            height: 210,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 15,
-          ),
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return _characterCard();
-          },
-        ),
+            child: GridView.builder(
+              shrinkWrap: true,
+              // physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const GridViewFixedHeight(
+                crossAxisCount: 2,
+                // childAspectRatio: 0.60,
+                height: 210,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+              ),
+              itemCount: data.data!.results!.length,
+              itemBuilder: (context, index) {
+                return _characterCard(value: data, index: index);
+              },
+            ),
+          );
+        },
+        error: (err, s) =>
+            Text(err.toString(), style: TextStyle(color: Colors.white)),
+        loading: () => CircularProgressIndicator(),
       ),
     );
   }
 
-  Widget _characterCard() {
+  Widget _characterCard(
+      {required CharacterListModel value, required int index}) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.70),
@@ -72,8 +90,8 @@ class _CharacterListState extends State<CharacterList> {
           Container(
             height: 155,
             decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
+                color: AllColors.primaryColor,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(
                     15,
                   ),
@@ -83,17 +101,16 @@ class _CharacterListState extends State<CharacterList> {
                 ),
                 image: DecorationImage(
                     image: NetworkImage(
-                        "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"),
+                        '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
                     fit: BoxFit.fill)),
           ),
           AppSizes.gapH10,
 
-
           // name
           Text(
-            "Hello",
+            value.data!.results![index].name!,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),
