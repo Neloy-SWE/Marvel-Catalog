@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:marvel_catalog/components/custom_loader.dart';
 import 'package:marvel_catalog/screens/screen_home_page.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
@@ -13,18 +14,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController rotationController =
-      AnimationController(vsync: this, duration: const Duration(seconds: 4))
-        ..repeat();
-
-  @override
-  dispose() {
-    rotationController.dispose();
-    super.dispose();
-  }
-
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
@@ -67,14 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
               // loader & copyright text
               Column(
                 children: [
-                  RotationTransition(
-                    turns:
-                        Tween(begin: 0.0, end: 1.0).animate(rotationController),
-                    child: Image.asset(
-                      ImagePath.loader,
-                      width: 70,
-                    ),
-                  ),
+                  const MyLoader(),
                   AppSizes.gapH30,
 
                   // copyright text

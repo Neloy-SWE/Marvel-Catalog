@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marvel_catalog/network/model/model_character_list.dart';
-import 'package:marvel_catalog/network/request/api/get_api_category_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 import '../components/grid_view_fixed_height.dart';
