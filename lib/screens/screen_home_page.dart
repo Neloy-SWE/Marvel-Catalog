@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_catalog/components/custom_buttons.dart';
-import 'package:marvel_catalog/screens/screen_character_list.dart';
+import 'package:marvel_catalog/screens/screen_explore.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         padding: const EdgeInsets.all(
-          15,
+          15
         ),
         shrinkWrap: true,
         children: [
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (builder) => const CharacterList(),
+                    builder: (builder) => const ExploreScreen(),
                   ),
                 );
               }),

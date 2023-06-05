@@ -23,12 +23,14 @@ class _MyLoaderState extends State<MyLoader> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return RotationTransition(
-      turns:
-      Tween(begin: 0.0, end: 1.0).animate(rotationController),
-      child: Image.asset(
-        ImagePath.loader,
-        width: 70,
+    return Center(
+      child: RotationTransition(
+        turns:
+        Tween(begin: 0.0, end: 1.0).animate(rotationController),
+        child: Image.asset(
+          ImagePath.loader,
+          width: 70,
+        ),
       ),
     );
   }

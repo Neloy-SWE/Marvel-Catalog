@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:marvel_catalog/components/custom_loader.dart';
 import 'package:marvel_catalog/network/model/model_character_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
@@ -28,22 +29,24 @@ class _CharacterListState extends ConsumerState<CharacterList> {
       appBar: AppBar(
         title: const Text(AllTexts.allCharacters),
       ),
-      body: data.when(
-        data: (data) {
-          CharacterListModel list = data;
-          return Container(
-            padding: const EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.35), BlendMode.dstATop),
-                image: const AssetImage(
-                  ImagePath.characterListBack,
-                ),
-              ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.35), BlendMode.dstATop),
+            image: const AssetImage(
+              ImagePath.characterListBack,
             ),
-            child: GridView.builder(
+          ),
+        ),
+        child: data.when(
+          data: (data) {
+            CharacterListModel list = data;
+            return GridView.builder(
               shrinkWrap: true,
               // physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const GridViewFixedHeight(
@@ -57,12 +60,12 @@ class _CharacterListState extends ConsumerState<CharacterList> {
               itemBuilder: (context, index) {
                 return _characterCard(value: data, index: index);
               },
-            ),
-          );
-        },
-        error: (err, s) =>
-            Text(err.toString(), style: TextStyle(color: Colors.white)),
-        loading: () => CircularProgressIndicator(),
+            );
+          },
+          error: (err, s) =>
+              Text(err.toString(), style: TextStyle(color: Colors.white),),
+          loading: () => const MyLoader(),
+        ),
       ),
     );
   }
