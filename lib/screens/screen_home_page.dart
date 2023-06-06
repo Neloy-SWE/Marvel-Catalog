@@ -22,9 +22,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(
-          15
-        ),
+        padding: const EdgeInsets.all(15),
         shrinkWrap: true,
         children: [
           Image.asset(ImagePath.marvel),

@@ -4,8 +4,9 @@ import 'package:marvel_catalog/components/custom_loader.dart';
 import 'package:marvel_catalog/network/model/model_character_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
+import '../components/custom_list_container.dart';
 import '../components/grid_view_fixed_height.dart';
-import '../network/request/provider/character_list_provider.dart';
+import '../network/request/provider/provider_character_list.dart';
 import '../utilities/all_colors.dart';
 import '../utilities/image_path.dart';
 
@@ -18,34 +19,17 @@ class CharacterList extends ConsumerStatefulWidget {
 
 class _CharacterListState extends ConsumerState<CharacterList> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final data = ref.watch(characterListProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(AllTexts.allCharacters),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.35), BlendMode.dstATop),
-            image: const AssetImage(
-              ImagePath.characterListBack,
-            ),
-          ),
-        ),
+      body: CustomListContainer.get(
+        context: context,
+        backgroundImagePath: ImagePath.characterListBack,
         child: data.when(
           data: (data) {
-            CharacterListModel list = data;
             return GridView.builder(
               shrinkWrap: true,
               // physics: const NeverScrollableScrollPhysics(),
@@ -63,7 +47,7 @@ class _CharacterListState extends ConsumerState<CharacterList> {
             );
           },
           error: (err, s) =>
-              Text(err.toString(), style: TextStyle(color: Colors.white),),
+              Text(err.toString(), style: const TextStyle(color: Colors.white),),
           loading: () => const MyLoader(),
         ),
       ),

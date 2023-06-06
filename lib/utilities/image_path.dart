@@ -4,4 +4,5 @@ class ImagePath{
   static const cap = "assets/images/cap.png";
   static const marvel = "assets/images/marvel.jpg";
   static const characterListBack = "assets/images/character_list_back.jpg";
+  static const comicListBack = "assets/images/comic_list_back.jpg";
 }

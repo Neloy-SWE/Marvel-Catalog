@@ -8,4 +8,5 @@ class AllTexts{
   static const String aboutYourFavCharacter = "about your favorite character ?";
   static const String explore = "Explore";
   static const String allCharacters = "All Characters";
+  static const String allComics = "All Comics";
 }

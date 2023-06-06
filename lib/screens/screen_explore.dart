@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_catalog/screens/screen_character_list.dart';
+import 'package:marvel_catalog/screens/screen_comic_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 
@@ -23,12 +24,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     List navigateScreens = [
-    navigateCharacterScreen,
-    navigateCharacterScreen,
-    navigateCharacterScreen,
-    navigateCharacterScreen,
-    navigateCharacterScreen,
-    navigateCharacterScreen,
+      navigateCharacterScreen,
+      navigateComicScreen,
+      navigateCharacterScreen,
+      navigateCharacterScreen,
+      navigateCharacterScreen,
+      navigateCharacterScreen,
     ];
     return Scaffold(
       appBar: AppBar(
@@ -46,10 +47,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
     );
   }
 
-  navigateCharacterScreen(){
+  navigateCharacterScreen() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (builder) => const CharacterList(),
+      ),
+    );
+  }
+
+  navigateComicScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (builder) => const ComicList(),
       ),
     );
   }
@@ -58,7 +67,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Column(
       children: [
         GestureDetector(
-          onTap: (){
+          onTap: () {
             onTap();
           },
           child: Container(

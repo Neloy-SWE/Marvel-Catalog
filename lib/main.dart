@@ -4,7 +4,7 @@ import 'package:marvel_catalog/components/my_theme.dart';
 import 'package:marvel_catalog/screens/screen_splash.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 
-void main(){
+void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 

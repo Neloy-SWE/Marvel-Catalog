@@ -12,6 +12,7 @@ class ApiValue{
   static const String errorMessage = "Try Again or check internet...";
   static const String exceptionMessage = "Network Error!!!";
 
-  static const int successCode = 200;
+  static const int getSuccessCode = 200;
   static const code = "code";
+  static const limit = "?limit=100&";
 }
