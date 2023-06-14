@@ -52,6 +52,7 @@ class _EventListState extends ConsumerState<EventList> {
       ),
     );
   }
+
   Widget _creatorCard({required EventListModel value, required int index}) {
     return Container(
       decoration: BoxDecoration(
@@ -104,5 +105,4 @@ class _EventListState extends ConsumerState<EventList> {
       ),
     );
   }
-
 }
