@@ -49,7 +49,7 @@ class _CreatorListState extends ConsumerState<CreatorList> {
               },
             );
           },
-          error: (err, s) => ErrorDialogue.show(context: context),
+          error: (err, s) => ErrorDialogue.view(context: context),
           loading: () => const MyLoader(),
         ),
       ),

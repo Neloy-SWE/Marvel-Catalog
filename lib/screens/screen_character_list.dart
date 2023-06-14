@@ -4,6 +4,7 @@ import 'package:marvel_catalog/components/custom_loader.dart';
 import 'package:marvel_catalog/network/model/model_character_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
+import '../components/custom_error_dialogue.dart';
 import '../components/custom_list_container.dart';
 import '../components/grid_view_fixed_height.dart';
 import '../network/request/provider/provider_character_list.dart';
@@ -32,7 +33,6 @@ class _CharacterListState extends ConsumerState<CharacterList> {
           data: (data) {
             return GridView.builder(
               shrinkWrap: true,
-              // physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const GridViewFixedHeight(
                 crossAxisCount: 2,
                 // childAspectRatio: 0.60,
@@ -46,8 +46,7 @@ class _CharacterListState extends ConsumerState<CharacterList> {
               },
             );
           },
-          error: (err, s) =>
-              Text(err.toString(), style: const TextStyle(color: Colors.white),),
+          error: (err, s) => ErrorDialogue.view(context: context),
           loading: () => const MyLoader(),
         ),
       ),
@@ -93,10 +92,13 @@ class _CharacterListState extends ConsumerState<CharacterList> {
           AppSizes.gapH10,
 
           // name
-          Text(
-            value.data!.results![index].name!,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Text(
+              value.data!.results![index].name!,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
         ],
       ),

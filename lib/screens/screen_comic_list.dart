@@ -6,6 +6,7 @@ import 'package:marvel_catalog/network/model/model_comic_list.dart';
 import 'package:marvel_catalog/network/request/provider/provider_comic_list.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
 
+import '../components/custom_error_dialogue.dart';
 import '../components/grid_view_fixed_height.dart';
 import '../utilities/all_colors.dart';
 import '../utilities/all_texts.dart';
@@ -33,7 +34,6 @@ class _ComicListState extends ConsumerState<ComicList> {
           data: (data) {
             return GridView.builder(
               shrinkWrap: true,
-              // physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const GridViewFixedHeight(
                 crossAxisCount: 2,
                 // childAspectRatio: 0.60,
@@ -47,10 +47,7 @@ class _ComicListState extends ConsumerState<ComicList> {
               },
             );
           },
-          error: (err, s) => Text(
-            err.toString(),
-            style: const TextStyle(color: Colors.white),
-          ),
+          error: (err, s) => ErrorDialogue.view(context: context),
           loading: () => const MyLoader(),
         ),
       ),
@@ -95,12 +92,15 @@ class _ComicListState extends ConsumerState<ComicList> {
           AppSizes.gapH10,
 
           // name
-          Text(
-            value.data!.results![index].title!,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.bodySmall,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Text(
+              value.data!.results![index].title!,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
         ],
       ),

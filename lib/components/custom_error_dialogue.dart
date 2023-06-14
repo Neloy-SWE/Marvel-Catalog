@@ -5,7 +5,7 @@ import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 
 class ErrorDialogue {
-  static show({required BuildContext context}) {
+  static view({required BuildContext context}) {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
