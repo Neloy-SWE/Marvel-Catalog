@@ -42,4 +42,23 @@ class AllButtons {
       ),
     );
   }
+
+  static btnDialogue({
+    required BuildContext context,
+    required String btnText,
+    required Function() onTap,
+  }) {
+    return MaterialButton(
+      onPressed: onTap,
+      height: 40,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      color: AllColors.primaryColor,
+      child: Text(
+        btnText,
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
+    );
+  }
 }
