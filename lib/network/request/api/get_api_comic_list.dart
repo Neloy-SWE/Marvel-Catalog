@@ -16,8 +16,7 @@ class GetComicList {
     var str = await response.stream.bytesToString();
     var data = jsonDecode(str);
     if (data[ApiValue.code] == ApiValue.getSuccessCode) {
-      ComicListModel list = ComicListModel.fromJson(str);
-      return list;
+      return ComicListModel.fromJson(str);
     }
     throw Exception(ApiValue.exceptionMessage);
   }

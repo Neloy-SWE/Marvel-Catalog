@@ -9,4 +9,6 @@ class AllTexts{
   static const String explore = "Explore";
   static const String allCharacters = "All Characters";
   static const String allComics = "All Comics";
+  static const String allCreators = "All Creators";
+  static const String okay = "Okay";
 }

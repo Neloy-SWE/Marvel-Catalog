@@ -100,7 +100,7 @@ class Result {
   final String? isbn;
   final String? upc;
   final String? diamondCode;
-  final Ean? ean;
+  final String? ean;
   final String? issn;
   final Format? format;
   final int? pageCount;
@@ -167,7 +167,7 @@ class Result {
         isbn: json["isbn"],
         upc: json["upc"],
         diamondCode: json["diamondCode"],
-        ean: eanValues.map[json["ean"]]!,
+        ean: json["ean"],
         issn: json["issn"],
         format: formatValues.map[json["format"]]!,
         pageCount: json["pageCount"],
@@ -228,7 +228,7 @@ class Result {
         "isbn": isbn,
         "upc": upc,
         "diamondCode": diamondCode,
-        "ean": eanValues.reverse[ean],
+        "ean": ean,
         "issn": issn,
         "format": formatValues.reverse[format],
         "pageCount": pageCount,
@@ -457,26 +457,6 @@ final dateTypeValues = EnumValues({
   "unlimitedDate": DateType.UNLIMITED_DATE
 });
 
-enum Ean {
-  EMPTY,
-  THE_978078513704752499,
-  THE_978078516750152999,
-  THE_978078513621752499,
-  THE_978078512178753999,
-  THE_978130293462051599,
-  THE_978078513450351499
-}
-
-final eanValues = EnumValues({
-  "": Ean.EMPTY,
-  "9780785 121787 53999": Ean.THE_978078512178753999,
-  "9780785 134503 51499": Ean.THE_978078513450351499,
-  "9780785 136217 52499": Ean.THE_978078513621752499,
-  "9780785 137047 52499": Ean.THE_978078513704752499,
-  "9780785 167501 52999": Ean.THE_978078516750152999,
-  "9781302 934620 51599": Ean.THE_978130293462051599
-});
-
 enum Format {
   EMPTY,
   COMIC,
@@ -520,10 +500,6 @@ class Thumbnail {
         "extension": extension,
       };
 }
-
-enum Extension { JPG }
-
-final extensionValues = EnumValues({"jpg": Extension.JPG});
 
 class Price {
   final PriceType? type;
