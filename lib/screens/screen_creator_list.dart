@@ -35,10 +35,8 @@ class _CreatorListState extends ConsumerState<CreatorList> {
           data: (data) {
             return GridView.builder(
               shrinkWrap: true,
-              // physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const GridViewFixedHeight(
                 crossAxisCount: 2,
-                // childAspectRatio: 0.60,
                 height: 210,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,

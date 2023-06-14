@@ -6,4 +6,5 @@ class ImagePath{
   static const characterListBack = "assets/images/character_list_back.jpg";
   static const comicListBack = "assets/images/comic_list_back.jpg";
   static const creatorListBack = "assets/images/creator_back.jpg";
+  static const eventListBack = "assets/images/event_back.jpg";
 }

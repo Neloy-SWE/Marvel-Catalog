@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marvel_catalog/screens/screen_character_list.dart';
 import 'package:marvel_catalog/screens/screen_comic_list.dart';
 import 'package:marvel_catalog/screens/screen_creator_list.dart';
+import 'package:marvel_catalog/screens/screen_event_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 
@@ -28,7 +29,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       navigateCharacterScreen,
       navigateComicScreen,
       navigateCreatorScreen,
-      navigateCharacterScreen,
+      navigateEventScreen,
       navigateCharacterScreen,
       navigateCharacterScreen,
     ];
@@ -68,6 +69,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (builder) => const CreatorList(),
+      ),
+    );
+  }
+
+  navigateEventScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (builder) => const EventList(),
       ),
     );
   }
