@@ -3,6 +3,7 @@ import 'package:marvel_catalog/screens/screen_character_list.dart';
 import 'package:marvel_catalog/screens/screen_comic_list.dart';
 import 'package:marvel_catalog/screens/screen_creator_list.dart';
 import 'package:marvel_catalog/screens/screen_event_list.dart';
+import 'package:marvel_catalog/screens/screen_series_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 
@@ -30,7 +31,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       navigateComicScreen,
       navigateCreatorScreen,
       navigateEventScreen,
-      navigateCharacterScreen,
+      navigateSeriesScreen,
       navigateCharacterScreen,
     ];
     return Scaffold(
@@ -77,6 +78,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (builder) => const EventList(),
+      ),
+    );
+  }
+
+  navigateSeriesScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (builder) => const SeriesList(),
       ),
     );
   }

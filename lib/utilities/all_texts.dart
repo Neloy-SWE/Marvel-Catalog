@@ -11,5 +11,6 @@ class AllTexts {
   static const String allComics = "All Comics";
   static const String allCreators = "All Creators";
   static const String allEvents = "All Events";
+  static const String allSeries = "All Series";
   static const String okay = "Okay";
 }
