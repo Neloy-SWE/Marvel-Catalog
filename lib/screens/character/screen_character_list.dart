@@ -1,48 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:marvel_catalog/components/custom_loader.dart';
+import 'package:marvel_catalog/network/model/model_character_list.dart';
+import 'package:marvel_catalog/utilities/all_texts.dart';
+import 'package:marvel_catalog/utilities/app_sizes.dart';
+import '../../components/custom_error_dialogue.dart';
+import '../../components/custom_list_container.dart';
+import '../../components/grid_view_fixed_height.dart';
+import '../../network/request/provider/provider_character_list.dart';
+import '../../utilities/all_colors.dart';
+import '../../utilities/image_path.dart';
 
-import '../components/custom_error_dialogue.dart';
-import '../components/custom_list_container.dart';
-import '../components/custom_loader.dart';
-import '../components/grid_view_fixed_height.dart';
-import '../network/model/model_series_list.dart';
-import '../network/request/provider/provider_series_list.dart';
-import '../utilities/all_colors.dart';
-import '../utilities/all_texts.dart';
-import '../utilities/app_sizes.dart';
-import '../utilities/image_path.dart';
-
-class SeriesList extends ConsumerStatefulWidget {
-  const SeriesList({Key? key}) : super(key: key);
+class CharacterList extends ConsumerStatefulWidget {
+  const CharacterList({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SeriesList> createState() => _SeriesListState();
+  ConsumerState<CharacterList> createState() => _CharacterListState();
 }
 
-class _SeriesListState extends ConsumerState<SeriesList> {
+class _CharacterListState extends ConsumerState<CharacterList> {
   @override
   Widget build(BuildContext context) {
-    final data = ref.watch(seriesListProvider);
+    final data = ref.watch(characterListProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AllTexts.allSeries),
+        title: const Text(AllTexts.allCharacters),
       ),
       body: CustomListContainer.get(
         context: context,
-        backgroundImagePath: ImagePath.seriesListBack,
+        backgroundImagePath: ImagePath.characterListBack,
         child: data.when(
           data: (data) {
             return GridView.builder(
               shrinkWrap: true,
               gridDelegate: const GridViewFixedHeight(
                 crossAxisCount: 2,
+                // childAspectRatio: 0.60,
                 height: 210,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
               ),
               itemCount: data.data!.results!.length,
               itemBuilder: (context, index) {
-                return _creatorCard(value: data, index: index);
+                return _characterCard(value: data, index: index);
               },
             );
           },
@@ -53,7 +53,8 @@ class _SeriesListState extends ConsumerState<SeriesList> {
     );
   }
 
-  Widget _creatorCard({required SeriesListModel value, required int index}) {
+  Widget _characterCard(
+      {required CharacterListModel value, required int index}) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.70),
@@ -94,10 +95,8 @@ class _SeriesListState extends ConsumerState<SeriesList> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
-              value.data!.results![index].title!,
+              value.data!.results![index].name!,
               textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),

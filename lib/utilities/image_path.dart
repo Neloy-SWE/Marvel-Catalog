@@ -8,5 +8,4 @@ class ImagePath {
   static const creatorListBack = "assets/images/creator_back.jpg";
   static const eventListBack = "assets/images/event_back.jpg";
   static const seriesListBack = "assets/images/series_back.jpg";
-  static const storiesListBack = "assets/images/stories_back.jpg";
 }

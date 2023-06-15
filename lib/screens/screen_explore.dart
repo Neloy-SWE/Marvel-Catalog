@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_catalog/screens/screen_character_list.dart';
-import 'package:marvel_catalog/screens/screen_comic_list.dart';
-import 'package:marvel_catalog/screens/screen_creator_list.dart';
-import 'package:marvel_catalog/screens/screen_event_list.dart';
-import 'package:marvel_catalog/screens/screen_series_list.dart';
+import 'package:marvel_catalog/screens/character/screen_character_list.dart';
+import 'package:marvel_catalog/screens/comic/screen_comic_list.dart';
+import 'package:marvel_catalog/screens/creator/screen_creator_list.dart';
+import 'package:marvel_catalog/screens/event/screen_event_list.dart';
+import 'package:marvel_catalog/screens/series/screen_series_list.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 
@@ -21,7 +21,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Option("Creators", "assets/images/creator.jpg"),
     Option("Events", "assets/images/event.jpg"),
     Option("Series", "assets/images/series.jpg"),
-    Option("Stories", "assets/images/stories.jpg"),
   ];
 
   @override
@@ -32,7 +31,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
       navigateCreatorScreen,
       navigateEventScreen,
       navigateSeriesScreen,
-      navigateCharacterScreen,
     ];
     return Scaffold(
       appBar: AppBar(

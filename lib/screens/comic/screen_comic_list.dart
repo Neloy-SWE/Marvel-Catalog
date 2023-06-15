@@ -1,49 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:marvel_catalog/components/custom_error_dialogue.dart';
 import 'package:marvel_catalog/components/custom_list_container.dart';
-import 'package:marvel_catalog/components/grid_view_fixed_height.dart';
+import 'package:marvel_catalog/components/custom_loader.dart';
+import 'package:marvel_catalog/network/model/model_comic_list.dart';
+import 'package:marvel_catalog/network/request/provider/provider_comic_list.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
 
-import '../components/custom_loader.dart';
-import '../network/model/model_creator_list.dart';
-import '../network/request/provider/provider_creator_list.dart';
-import '../utilities/all_colors.dart';
-import '../utilities/all_texts.dart';
-import '../utilities/app_sizes.dart';
+import '../../components/custom_error_dialogue.dart';
+import '../../components/grid_view_fixed_height.dart';
+import '../../utilities/all_colors.dart';
+import '../../utilities/all_texts.dart';
+import '../../utilities/app_sizes.dart';
 
-class CreatorList extends ConsumerStatefulWidget {
-  const CreatorList({Key? key}) : super(key: key);
+class ComicList extends ConsumerStatefulWidget {
+  const ComicList({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<CreatorList> createState() => _CreatorListState();
+  ConsumerState<ComicList> createState() => _ComicListState();
 }
 
-class _CreatorListState extends ConsumerState<CreatorList> {
+class _ComicListState extends ConsumerState<ComicList> {
   @override
   Widget build(BuildContext context) {
-    final data = ref.watch(creatorListProvider);
-
+    final data = ref.watch(comicListProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AllTexts.allCreators),
+        title: const Text(AllTexts.allComics),
       ),
       body: CustomListContainer.get(
         context: context,
-        backgroundImagePath: ImagePath.creatorListBack,
+        backgroundImagePath: ImagePath.comicListBack,
         child: data.when(
           data: (data) {
             return GridView.builder(
               shrinkWrap: true,
               gridDelegate: const GridViewFixedHeight(
                 crossAxisCount: 2,
+                // childAspectRatio: 0.60,
                 height: 210,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
               ),
               itemCount: data.data!.results!.length,
               itemBuilder: (context, index) {
-                return _creatorCard(value: data, index: index);
+                return _characterCard(value: data, index: index);
               },
             );
           },
@@ -54,7 +54,7 @@ class _CreatorListState extends ConsumerState<CreatorList> {
     );
   }
 
-  Widget _creatorCard({required CreatorListModel value, required int index}) {
+  Widget _characterCard({required ComicListModel value, required int index}) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.70),
@@ -95,7 +95,7 @@ class _CreatorListState extends ConsumerState<CreatorList> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
-              value.data!.results![index].fullName!,
+              value.data!.results![index].title!,
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

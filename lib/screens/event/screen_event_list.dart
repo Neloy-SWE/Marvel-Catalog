@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/custom_error_dialogue.dart';
-import '../components/custom_list_container.dart';
-import '../components/custom_loader.dart';
-import '../components/grid_view_fixed_height.dart';
-import '../network/model/model_event_list.dart';
-import '../network/request/provider/provider_event_list.dart';
-import '../utilities/all_colors.dart';
-import '../utilities/all_texts.dart';
-import '../utilities/app_sizes.dart';
-import '../utilities/image_path.dart';
+import '../../components/custom_error_dialogue.dart';
+import '../../components/custom_list_container.dart';
+import '../../components/custom_loader.dart';
+import '../../components/grid_view_fixed_height.dart';
+import '../../network/model/model_event_list.dart';
+import '../../network/request/provider/provider_event_list.dart';
+import '../../utilities/all_colors.dart';
+import '../../utilities/all_texts.dart';
+import '../../utilities/app_sizes.dart';
+import '../../utilities/image_path.dart';
 
 class EventList extends ConsumerStatefulWidget {
   const EventList({Key? key}) : super(key: key);
