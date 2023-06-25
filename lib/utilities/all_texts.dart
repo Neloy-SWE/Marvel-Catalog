@@ -19,4 +19,6 @@ class AllTexts {
   static const String stories = "Stories";
   static const String events = "Events";
   static const String details = "Details";
+  static const String creators = "Creators";
+  static const String characters = "Characters";
 }

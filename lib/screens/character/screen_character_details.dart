@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:marvel_catalog/components/custom_details_page_image_show.dart';
+import 'package:marvel_catalog/components/custom_details_tile.dart';
+import 'package:marvel_catalog/components/custom_tile_text.dart';
+import 'package:marvel_catalog/components/custom_tile_text.dart';
+import 'package:marvel_catalog/components/custom_tile_text.dart';
+import 'package:marvel_catalog/components/custom_tile_text.dart';
 import 'package:marvel_catalog/utilities/all_colors.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
@@ -28,7 +34,6 @@ class _CharacterDetailsScreenState
   @override
   Widget build(BuildContext context) {
     final data = ref.watch(characterDetailsProvider(widget.id));
-    for (int i = 0; i <= 4; i++) {}
     return Scaffold(
       appBar: AppBar(
         title: const Text(AllTexts.details),
@@ -39,7 +44,8 @@ class _CharacterDetailsScreenState
               i < data.data!.results![0].comics!.items!.length;
               i++) {
             listComics.add(
-              _listText(
+              CustomTileText.show(
+                context: context,
                 text:
                     "${i + 1}. ${data.data!.results![0].comics!.items![i].name}",
               ),
@@ -50,7 +56,8 @@ class _CharacterDetailsScreenState
               i < data.data!.results![0].series!.items!.length;
               i++) {
             listSeries.add(
-              _listText(
+              CustomTileText.show(
+                context: context,
                 text:
                     "${i + 1}. ${data.data!.results![0].series!.items![i].name}",
               ),
@@ -61,7 +68,8 @@ class _CharacterDetailsScreenState
               i < data.data!.results![0].stories!.items!.length;
               i++) {
             listStories.add(
-              _listText(
+              CustomTileText.show(
+                context: context,
                 text:
                     "${i + 1}. ${data.data!.results![0].stories!.items![i].name}",
               ),
@@ -72,7 +80,8 @@ class _CharacterDetailsScreenState
               i < data.data!.results![0].events!.items!.length;
               i++) {
             listEvents.add(
-              _listText(
+              CustomTileText.show(
+                context: context,
                 text:
                     "${i + 1}. ${data.data!.results![0].events!.items![i].name}",
               ),
@@ -82,18 +91,9 @@ class _CharacterDetailsScreenState
           return ListView(
             padding: const EdgeInsets.all(15),
             children: [
-              Container(
-                height: 250,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      "${data.data!.results![0].thumbnail!.path!}.${data.data!.results![0].thumbnail!.extension!}",
-                    ),
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
+              CustomDetailsPageImage.show(
+                imagePath:
+                    "${data.data!.results![0].thumbnail!.path!}.${data.data!.results![0].thumbnail!.extension!}",
               ),
               AppSizes.gapH10,
               Text(
@@ -116,47 +116,20 @@ class _CharacterDetailsScreenState
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               AppSizes.gapH30,
-              _myTile(title: AllTexts.comics, list: listComics),
-              _myTile(title: AllTexts.series, list: listSeries),
-              _myTile(title: AllTexts.stories, list: listStories),
-              _myTile(title: AllTexts.events, list: listEvents),
+              CustomDetailsTile.show(
+                  context: context, title: AllTexts.comics, list: listComics),
+              CustomDetailsTile.show(
+                  context: context, title: AllTexts.series, list: listSeries),
+              CustomDetailsTile.show(
+                  context: context, title: AllTexts.stories, list: listStories),
+              CustomDetailsTile.show(
+                  context: context, title: AllTexts.events, list: listEvents),
             ],
           );
         },
         error: (err, s) => ErrorDialogue.view(context: context),
         loading: () => const MyLoader(),
       ),
-    );
-  }
-
-  Widget _myTile({required String title, required List<Widget> list}) {
-    return Column(
-      children: [
-        ExpansionTile(
-          title: Text(title),
-          expandedCrossAxisAlignment: CrossAxisAlignment.start,
-          shape: const RoundedRectangleBorder(
-            side: BorderSide(color: AllColors.primaryColor),
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                10,
-              ),
-            ),
-          ),
-          children: list.isEmpty ? [_listText(text: "N/A")] : list,
-        ),
-        AppSizes.gapH10,
-      ],
-    );
-  }
-
-  Widget _listText({required String text}) {
-    return Text(
-      text,
-      textAlign: TextAlign.start,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context).textTheme.displaySmall,
     );
   }
 }

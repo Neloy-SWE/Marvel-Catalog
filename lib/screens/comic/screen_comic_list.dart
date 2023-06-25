@@ -4,6 +4,7 @@ import 'package:marvel_catalog/components/custom_list_container.dart';
 import 'package:marvel_catalog/components/custom_loader.dart';
 import 'package:marvel_catalog/network/model/model_comic_list.dart';
 import 'package:marvel_catalog/network/request/provider/provider_comic_list.dart';
+import 'package:marvel_catalog/screens/comic/screen_comic_details.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
 
 import '../../components/custom_error_dialogue.dart';
@@ -55,54 +56,63 @@ class _ComicListState extends ConsumerState<ComicList> {
   }
 
   Widget _characterCard({required ComicListModel value, required int index}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.70),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(
-            15,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (builder) => ComicDetailsScreen(id: value.data!.results![index].id!),
           ),
-        ),
-        border: Border.all(
-          color: AllColors.primaryColor,
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // iamge
-          Container(
-            height: 155,
-            decoration: BoxDecoration(
-                color: AllColors.primaryColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(
-                    15,
-                  ),
-                  topRight: Radius.circular(
-                    15,
-                  ),
-                ),
-                image: DecorationImage(
-                    image: NetworkImage(
-                        '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
-                    fit: BoxFit.fill)),
-          ),
-          AppSizes.gapH10,
-
-          // name
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(
-              value.data!.results![index].title!,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodySmall,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.70),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(
+              15,
             ),
           ),
-        ],
+          border: Border.all(
+            color: AllColors.primaryColor,
+            width: 1,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // iamge
+            Container(
+              height: 155,
+              decoration: BoxDecoration(
+                  color: AllColors.primaryColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(
+                      15,
+                    ),
+                    topRight: Radius.circular(
+                      15,
+                    ),
+                  ),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
+                      fit: BoxFit.fill)),
+            ),
+            AppSizes.gapH10,
+
+            // name
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                value.data!.results![index].title!,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
