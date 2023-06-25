@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:marvel_catalog/utilities/all_colors.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 
-class MyTheme{
+class MyTheme {
   static final myTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: const AppBarTheme(
@@ -24,10 +24,10 @@ class MyTheme{
     textTheme: const TextTheme(
       displaySmall: TextStyle(
         fontFamily: AllTexts.regularFont,
-        fontSize: 11,
+        fontSize: 12,
         color: Colors.white,
       ),
-      displayLarge:  TextStyle(
+      displayLarge: TextStyle(
         fontFamily: AllTexts.boldFont,
         fontSize: 45,
         color: Colors.white,
@@ -57,6 +57,19 @@ class MyTheme{
         fontSize: 25,
         color: AllColors.primaryColor,
       ),
+    ),
+    expansionTileTheme: const ExpansionTileThemeData(
+      iconColor: AllColors.primaryColor,
+      collapsedIconColor: Colors.white,
+      collapsedShape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.white,
+        ),
+      ),
+      textColor: AllColors.primaryColor,
+      collapsedTextColor: Colors.white,
+      expandedAlignment: Alignment.centerLeft,
+      childrenPadding: EdgeInsets.only(bottom: 15, left: 15, right: 15),
     ),
   );
 }
