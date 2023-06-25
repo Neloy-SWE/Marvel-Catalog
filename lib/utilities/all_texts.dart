@@ -13,4 +13,10 @@ class AllTexts {
   static const String allEvents = "All Events";
   static const String allSeries = "All Series";
   static const String okay = "Okay";
+  static const String description = "Description";
+  static const String comics = "Comics";
+  static const String series = "Series";
+  static const String stories = "Stories";
+  static const String events = "Events";
+  static const String details = "Details";
 }

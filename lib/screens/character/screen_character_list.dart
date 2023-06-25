@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marvel_catalog/components/custom_loader.dart';
 import 'package:marvel_catalog/network/model/model_character_list.dart';
+import 'package:marvel_catalog/screens/character/screen_character_details.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 import '../../components/custom_error_dialogue.dart';
@@ -55,52 +56,61 @@ class _CharacterListState extends ConsumerState<CharacterList> {
 
   Widget _characterCard(
       {required CharacterListModel value, required int index}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.70),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(
-            15,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (builder) => CharacterDetailsScreen(id: value.data!.results![index].id!),
           ),
-        ),
-        border: Border.all(
-          color: AllColors.primaryColor,
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // iamge
-          Container(
-            height: 155,
-            decoration: BoxDecoration(
-                color: AllColors.primaryColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(
-                    15,
-                  ),
-                  topRight: Radius.circular(
-                    15,
-                  ),
-                ),
-                image: DecorationImage(
-                    image: NetworkImage(
-                        '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
-                    fit: BoxFit.fill)),
-          ),
-          AppSizes.gapH10,
-
-          // name
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(
-              value.data!.results![index].name!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.70),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(
+              15,
             ),
           ),
-        ],
+          border: Border.all(
+            color: AllColors.primaryColor,
+            width: 1,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // iamge
+            Container(
+              height: 155,
+              decoration: BoxDecoration(
+                  color: AllColors.primaryColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(
+                      15,
+                    ),
+                    topRight: Radius.circular(
+                      15,
+                    ),
+                  ),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
+                      fit: BoxFit.fill)),
+            ),
+            AppSizes.gapH10,
+
+            // name
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                value.data!.results![index].name!,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
