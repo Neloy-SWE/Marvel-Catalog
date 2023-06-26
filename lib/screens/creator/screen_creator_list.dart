@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marvel_catalog/components/custom_error_dialogue.dart';
 import 'package:marvel_catalog/components/custom_list_container.dart';
 import 'package:marvel_catalog/components/grid_view_fixed_height.dart';
+import 'package:marvel_catalog/screens/creator/screen_creator_details.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
 
 import '../../components/custom_loader.dart';
@@ -55,54 +56,63 @@ class _CreatorListState extends ConsumerState<CreatorList> {
   }
 
   Widget _creatorCard({required CreatorListModel value, required int index}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.70),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(
-            15,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (builder) => CreatorDetailsScreen(id: value.data!.results![index].id!),
           ),
-        ),
-        border: Border.all(
-          color: AllColors.primaryColor,
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // iamge
-          Container(
-            height: 155,
-            decoration: BoxDecoration(
-                color: AllColors.primaryColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(
-                    15,
-                  ),
-                  topRight: Radius.circular(
-                    15,
-                  ),
-                ),
-                image: DecorationImage(
-                    image: NetworkImage(
-                        '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
-                    fit: BoxFit.fill)),
-          ),
-          AppSizes.gapH10,
-
-          // name
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(
-              value.data!.results![index].fullName!,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodySmall,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.70),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(
+              15,
             ),
           ),
-        ],
+          border: Border.all(
+            color: AllColors.primaryColor,
+            width: 1,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // iamge
+            Container(
+              height: 155,
+              decoration: BoxDecoration(
+                  color: AllColors.primaryColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(
+                      15,
+                    ),
+                    topRight: Radius.circular(
+                      15,
+                    ),
+                  ),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          '${value.data!.results![index].thumbnail!.path!}.${value.data!.results![index].thumbnail!.extension!}'),
+                      fit: BoxFit.fill)),
+            ),
+            AppSizes.gapH10,
+
+            // name
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                value.data!.results![index].fullName!,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
