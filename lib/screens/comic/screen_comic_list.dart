@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marvel_catalog/components/custom_list_container.dart';
 import 'package:marvel_catalog/components/custom_loader.dart';
-import 'package:marvel_catalog/network/model/model_comic_list.dart';
-import 'package:marvel_catalog/network/request/provider/provider_comic_list.dart';
+import 'package:marvel_catalog/network/model/model_comic/model_comic_list.dart';
+import 'package:marvel_catalog/network/request/provider/provider_comic/provider_comic_list.dart';
 import 'package:marvel_catalog/screens/comic/screen_comic_details.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
 

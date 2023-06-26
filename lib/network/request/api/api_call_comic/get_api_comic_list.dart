@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:marvel_catalog/network/model/model_comic_list.dart';
+import 'package:marvel_catalog/network/model/model_comic/model_comic_list.dart';
 
-import '../../constant/api_value.dart';
-import '../../constant/keys.dart';
+import '../../../constant/api_value.dart';
+import '../../../constant/keys.dart';
 
 class GetComicList {
   Future<ComicListModel> callApi() async {

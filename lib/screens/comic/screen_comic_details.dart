@@ -6,7 +6,7 @@ import '../../components/custom_details_tile.dart';
 import '../../components/custom_error_dialogue.dart';
 import '../../components/custom_loader.dart';
 import '../../components/custom_tile_text.dart';
-import '../../network/request/provider/provider_comic_details.dart';
+import '../../network/request/provider/provider_comic/provider_comic_details.dart';
 import '../../utilities/all_texts.dart';
 import '../../utilities/app_sizes.dart';
 

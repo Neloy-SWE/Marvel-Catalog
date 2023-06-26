@@ -12,7 +12,7 @@ import 'package:marvel_catalog/utilities/app_sizes.dart';
 
 import '../../components/custom_error_dialogue.dart';
 import '../../components/custom_loader.dart';
-import '../../network/request/provider/provider_character_details.dart';
+import '../../network/request/provider/provider_character/provider_character_details.dart';
 
 class CharacterDetailsScreen extends ConsumerStatefulWidget {
   final int id;

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:marvel_catalog/network/constant/api_value.dart';
 import 'package:marvel_catalog/network/constant/keys.dart';
 
-import '../../model/model_event_list.dart';
+import '../../../model/model_event/model_event_list.dart';
 
 class GetEventList {
   Future<EventListModel> callApi() async {

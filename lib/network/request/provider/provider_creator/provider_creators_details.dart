@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../model/model_creator_details.dart';
-import '../api/get_api_creator_details.dart';
+import '../../../model/model_creator/model_creator_details.dart';
+import '../../api/api_call_creator/get_api_creator_details.dart';
 
 final creatorDetails = Provider<GetCreatorDetails>((ref) => GetCreatorDetails());
 final creatorDetailsProvider =

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import '../../constant/api_value.dart';
-import '../../constant/keys.dart';
-import '../../model/model_creator_list.dart';
+import '../../../constant/api_value.dart';
+import '../../../constant/keys.dart';
+import '../../../model/model_creator/model_creator_list.dart';
 import 'package:http/http.dart' as http;
 
 class GetCreatorList {

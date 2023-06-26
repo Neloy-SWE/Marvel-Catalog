@@ -7,8 +7,8 @@ import 'package:marvel_catalog/screens/creator/screen_creator_details.dart';
 import 'package:marvel_catalog/utilities/image_path.dart';
 
 import '../../components/custom_loader.dart';
-import '../../network/model/model_creator_list.dart';
-import '../../network/request/provider/provider_creator_list.dart';
+import '../../network/model/model_creator/model_creator_list.dart';
+import '../../network/request/provider/provider_creator/provider_creator_list.dart';
 import '../../utilities/all_colors.dart';
 import '../../utilities/all_texts.dart';
 import '../../utilities/app_sizes.dart';

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marvel_catalog/components/custom_loader.dart';
-import 'package:marvel_catalog/network/model/model_character_list.dart';
+import 'package:marvel_catalog/network/model/model_character/model_character_list.dart';
 import 'package:marvel_catalog/screens/character/screen_character_details.dart';
 import 'package:marvel_catalog/utilities/all_texts.dart';
 import 'package:marvel_catalog/utilities/app_sizes.dart';
 import '../../components/custom_error_dialogue.dart';
 import '../../components/custom_list_container.dart';
 import '../../components/grid_view_fixed_height.dart';
-import '../../network/request/provider/provider_character_list.dart';
+import '../../network/request/provider/provider_character/provider_character_list.dart';
 import '../../utilities/all_colors.dart';
 import '../../utilities/image_path.dart';
 

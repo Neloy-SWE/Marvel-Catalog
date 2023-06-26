@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:marvel_catalog/network/constant/api_value.dart';
 
-import '../../constant/keys.dart';
-import '../../model/model_character_details.dart';
+import '../../../constant/keys.dart';
+import '../../../model/model_character/model_character_details.dart';
 
 class GetCharacterDetails {
   Future<CharacterDetailsModel> callApi({required int id}) async {
